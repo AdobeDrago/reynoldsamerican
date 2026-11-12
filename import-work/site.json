@@ -1,0 +1,65 @@
+{
+ "$comment": "Harness rules for www.reynoldsamerican.com (home page pilot). Schema: templates/site.json.",
+ "name": "reynoldsamerican",
+ "source": {
+  "origin": "https://www.reynoldsamerican.com"
+ },
+ "rebuild": {
+  "origin": "http://localhost:3000",
+  "preview": "https://{ref}--reynoldsamerican--adobedrago.aem.page",
+  "repo": "..",
+  "da": {
+   "org": "AdobeDrago",
+   "site": "reynoldsamerican"
+  }
+ },
+ "access": {
+  "mode": "live"
+ },
+ "widths": [
+  1440,
+  1280
+ ],
+ "height": 900,
+ "hide": [
+  "#onetrust-consent-sdk"
+ ],
+ "video": {
+  "providers": "all"
+ },
+ "carousels": [
+  "slick",
+  "swiper",
+  "hook"
+ ],
+ "scroll": {
+  "max": 8000,
+  "step": 500,
+  "wait": 150
+ },
+ "gate": {
+  "pixel": 0.99,
+  "tolerance": 0.5,
+  "threshold": 0.1
+ },
+ "$freezeCss": "has-parallax covers use background-attachment:fixed, which does not paint into section crops (the GROWING TOMORROW crop came out blank). Measure both sides with scroll attachment; the rebuild's .parallax hook gets the same rule.",
+ "freezeCss": [
+  ".wp-block-cover.has-parallax,.wp-block-cover.has-parallax *,.parallax,.parallax *{background-attachment:scroll!important}"
+ ],
+ "$invisible": "stock quote (live feed on the source, static placeholder in the rebuild): kept in layout, excluded from pixel and style comparison on both sides (intake decision)",
+ "invisible": [
+  ".stock-ticker",
+  "footer .stock p",
+  ".header-stock",
+  "footer .footer-stock p"
+ ],
+ "$prepare": "native <video> has no poster on the source: pause every video on frame 0 so the source shows the same frame as the rebuild's poster (extracted from frame 0 of the same file; intake video policy: poster only)",
+ "prepare": [
+  {
+   "js": "Promise.all([...document.querySelectorAll('video')].map((v) => new Promise((r) => { v.removeAttribute('autoplay'); v.loop = false; v.pause(); const seek = () => { v.pause(); v.currentTime = 0; v.addEventListener('seeked', r, { once: true }); }; if (v.readyState >= 2) seek(); else v.addEventListener('loadeddata', seek, { once: true }); setTimeout(r, 8000); })))"
+  },
+  {
+   "wait": 500
+  }
+ ]
+}

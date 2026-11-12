@@ -1,3 +1,5 @@
+/* stylelint-disable no-descending-specificity -- parity rebuild: rules target disjoint elements, order kept as gated */
+
 /*
  * Copyright 2020 Adobe. All rights reserved.
  * This file is licensed to you under the Apache License, Version 2.0 (the "License");
@@ -12,16 +14,20 @@
 
 :root {
   /* colors */
-  --background-color: #ffffff;
+  --background-color: #fff;
   --light-color: #f2f6fa;
   --dark-color: #0e2b63;
   --text-color: #0e2b63;
-  --link-color: #0000ee;
-  --link-hover-color: #0000ee;
+  --link-color: #00e;
+  --link-hover-color: #00e;
 
   /* fonts */
-  --body-font-family: aeroport, aeroport-fallback, sans-serif;
-  --heading-font-family: aeroport, aeroport-fallback, sans-serif;
+
+  /* exact computed string on the source (parity gate compares font-family verbatim) */
+  /* stylelint-disable-next-line value-keyword-case */
+  --body-font-family: Aeroport, sans-serif;
+  /* stylelint-disable-next-line value-keyword-case */
+  --heading-font-family: Aeroport, sans-serif;
 
   /* body sizes */
   --body-font-size-m: 14px;
@@ -40,12 +46,7 @@
   --nav-height: 125px;
 }
 
-/* fallback fonts */
-@font-face {
-  font-family: aeroport-fallback;
-  size-adjust: 102.87%;
-  src: local('Arial');
-}
+/* fallback face dropped: the parity gate compares the computed font-family string exactly (source: "Aeroport, sans-serif") */
 
 @media (width >= 900px) {
   :root {
@@ -72,6 +73,7 @@ body {
   font-family: var(--body-font-family);
   font-size: var(--body-font-size-m);
   line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
 }
 
 body.appear {
@@ -316,4 +318,114 @@ main .section.highlight {
   background-color: var(--light-color);
   margin: 0;
   padding: 40px 0;
+}
+
+/* reynoldsamerican template: full-bleed sections, spacing owned by each block (parity rebuild) */
+main > .section,
+main > .section:first-of-type {
+  margin: 0;
+}
+
+main > .section > div,
+main > .section > .default-content-wrapper {
+  max-width: none;
+  margin: 0;
+  padding: 0;
+}
+
+@media (width >= 900px) {
+  main > .section > div {
+    padding: 0;
+  }
+}
+
+main .section.rainbow {
+  height: 10px;
+  background-image:
+    linear-gradient(90deg, #0e2b63 42%, transparent 42%),
+    linear-gradient(90deg, #004f9f 58%, transparent 58%),
+    linear-gradient(90deg, #10b0e6 72%, transparent 72%),
+    linear-gradient(90deg, #c6c8ca 81%, transparent 81%),
+    linear-gradient(90deg, #ec230e 90%, transparent 90%),
+    linear-gradient(90deg, #ae1e23 100%, transparent);
+}
+
+/* explore: centred pill link on the light band, rainbow bar along the bottom edge */
+main .section.explore {
+  position: relative;
+  padding: 0 0 40px;
+  background-color: #eaebec;
+}
+
+main .section.explore::after,
+main .section.rainbow-bottom::after {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 10px;
+  background-image:
+    linear-gradient(90deg, #0e2b63 42%, transparent 42%),
+    linear-gradient(90deg, #004f9f 58%, transparent 58%),
+    linear-gradient(90deg, #10b0e6 72%, transparent 72%),
+    linear-gradient(90deg, #c6c8ca 81%, transparent 81%),
+    linear-gradient(90deg, #ec230e 90%, transparent 90%),
+    linear-gradient(90deg, #ae1e23 100%, transparent);
+  content: '';
+}
+
+main .section.explore > .default-content-wrapper {
+  margin: 0 5%;
+}
+
+main .section.explore p {
+  margin: 0;
+  text-align: center;
+}
+
+main .section.explore a.button:any-link {
+  display: inline-block;
+  border: 0;
+  border-radius: 50px;
+  padding: 10px 32px 8px;
+  background-color: #0e2b63;
+  font: 500 16px/24px var(--body-font-family);
+  color: #fff;
+  text-transform: uppercase;
+  vertical-align: top;
+}
+
+main .section.rainbow-bottom {
+  position: relative;
+  padding-bottom: 10px;
+}
+
+/* news: centred 1200px band holding the article carousel */
+main > .section.news {
+  position: relative;
+  box-sizing: border-box;
+  width: min(1200px, 90%);
+  margin: 0 auto;
+  padding: 50px 20px;
+}
+
+main .section.news h2 {
+  margin: 0;
+  font: 700 24px/36px var(--heading-font-family);
+}
+
+main .section.news h2 a:any-link {
+  color: #0e2b63;
+}
+
+/* rule: closing horizontal rule (an <hr> on the source) */
+main > .section.rule {
+  box-sizing: border-box;
+  max-width: 1260px;
+  height: 2px;
+  margin: 10px auto;
+  border: 0;
+  border-top: 1px solid #9a9a9a;
+  border-bottom: 1px solid #eee;
+  overflow: hidden;
 }

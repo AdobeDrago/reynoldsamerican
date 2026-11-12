@@ -1,20 +1,150 @@
-footer {
-  background-color: var(--light-color);
-  font-size: var(--body-font-size-xs);
+/* stylelint-disable no-descending-specificity -- parity rebuild: rules target disjoint elements, order kept as gated */
+
+/* values measured on www.reynoldsamerican.com (1440 / 1280) */
+footer .footer {
+  font-size: 16px;
+  line-height: 24px;
+  color: #000;
 }
 
-footer .footer > div {
-  margin: auto;
-  max-width: 1200px;
-  padding: 40px 24px 24px;
+footer .footer ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
 }
 
 footer .footer p {
   margin: 0;
 }
 
-@media (width >= 900px) {
-  footer .footer > div {
-    padding: 40px 32px 24px;
-  }
+footer .footer a:any-link {
+  text-decoration: none;
+}
+
+footer .footer-rainbow {
+  height: 10px;
+  background-image:
+    linear-gradient(90deg, #0e2b63 42%, transparent 42%),
+    linear-gradient(90deg, #004f9f 58%, transparent 58%),
+    linear-gradient(90deg, #10b0e6 72%, transparent 72%),
+    linear-gradient(90deg, #c6c8ca 81%, transparent 81%),
+    linear-gradient(90deg, #ec230e 90%, transparent 90%),
+    linear-gradient(90deg, #ae1e23 100%, transparent);
+}
+
+footer .footer-top {
+  background-color: #fff;
+}
+
+footer .footer-container {
+  width: min(1160px, 90%);
+  margin: 0 auto;
+}
+
+footer .footer-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  padding: 70px 0;
+}
+
+footer .footer-heading h4 {
+  margin: 0 0 min(40px, 2.8393vw);
+  font: 700 16px/16px var(--heading-font-family);
+  color: #000;
+}
+
+footer .footer-heading h4 a:any-link {
+  color: #0e2b63;
+}
+
+footer .footer-social {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  line-height: 16px;
+}
+
+footer .footer-social a,
+footer .footer-social img,
+footer .footer-social svg {
+  display: block;
+  max-width: 100%;
+}
+
+footer .footer-stock p {
+  font: 400 14px/14px var(--body-font-family);
+}
+
+footer .footer-stock strong {
+  font-weight: 700;
+}
+
+footer .footer-items ul {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  font-size: 14px;
+  line-height: 14px;
+}
+
+footer .footer-items a:any-link {
+  font: 400 14px/14px var(--body-font-family);
+  color: #0e2b63;
+}
+
+footer .footer-list {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+footer .footer-brand {
+  display: grid;
+  grid-template-columns: 100%;
+  place-items: center center;
+  padding: 25px 0 60px;
+  background-color: #fff;
+}
+
+footer .footer-brand > img {
+  width: 157px;
+  height: auto;
+}
+
+footer .footer-brand > a:any-link {
+  font: 700 14px/21px var(--body-font-family);
+  color: #004f9f;
+}
+
+footer .footer-disclaimer {
+  justify-self: stretch;
+  padding: 35px;
+}
+
+footer .footer-disclaimer p {
+  font: 400 0.8rem/1.5 var(--body-font-family);
+  color: #000;
+}
+
+footer .footer-legal {
+  padding: 16px 0;
+  background-color: #0e2b63;
+}
+
+footer .footer-legal-inner {
+  margin: 0 5%;
+}
+
+footer .footer-legal ul {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: min(40px, 2.8393vw);
+}
+
+footer .footer-legal a:any-link {
+  font: 700 12px/18px var(--body-font-family);
+  color: #fff;
 }
