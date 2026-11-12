@@ -68,6 +68,8 @@ export default async function decorate(block) {
   topList.classList.add('header-nav-list');
   [...topList.children].forEach((li) => {
     li.classList.add('header-nav-item');
+    // DA serves a top-level item as <li><p><a>…</a></p><ul>…</ul></li>: unwrap the paragraph
+    li.querySelectorAll(':scope > p').forEach((p) => p.replaceWith(...p.childNodes));
     const sub = li.querySelector(':scope > ul');
     if (!sub) return;
     sub.classList.add('header-nav-dropdown');

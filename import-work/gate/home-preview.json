@@ -1,0 +1,71 @@
+{
+ "site": "../site.json",
+ "page": "home",
+ "source": "https://www.reynoldsamerican.com/",
+ "rebuild": "https://parity-home--reynoldsamerican--adobedrago.aem.page/",
+ "widths": [
+  1440,
+  1280
+ ],
+ "out": "work/gate/home-preview",
+ "bundle": "../work/bundles/home",
+ "snapshot": null,
+ "timelines": [],
+ "sections": [
+  {
+   "name": "header",
+   "source": "header",
+   "rebuild": "header .header"
+  },
+  {
+   "name": "hero",
+   "source": "@sec:1",
+   "rebuild": "main > .section:nth-child(1)"
+  },
+  {
+   "name": "stripe1",
+   "source": "@sec:2",
+   "rebuild": "main > .section:nth-child(2)"
+  },
+  {
+   "name": "growing",
+   "source": "@sec:3",
+   "rebuild": "main > .section:nth-child(3)"
+  },
+  {
+   "name": "stripe2",
+   "source": "@sec:4",
+   "rebuild": "main > .section:nth-child(4)"
+  },
+  {
+   "name": "pillars",
+   "source": "@sec:5",
+   "rebuild": "main > .section:nth-child(5)"
+  },
+  {
+   "name": "s6",
+   "source": "@sec:6",
+   "rebuild": "main > .section:nth-child(6)"
+  },
+  {
+   "name": "s7",
+   "source": "@sec:7",
+   "rebuild": "main > .section:nth-child(7)"
+  },
+  {
+   "name": "s8",
+   "source": "@sec:8",
+   "rebuild": "main > .section:nth-child(8)"
+  },
+  {
+   "name": "rule",
+   "source": "@sec:9",
+   "rebuild": "main > .section:nth-child(9)"
+  },
+  {
+   "name": "footer",
+   "source": "footer",
+   "rebuild": "footer .footer"
+  }
+ ]
+}
