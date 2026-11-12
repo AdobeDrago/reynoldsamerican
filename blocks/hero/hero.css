@@ -1,37 +1,149 @@
-.hero-container .hero-wrapper {
-  max-width: unset;
-  padding: 0;
-}
+/* stylelint-disable no-descending-specificity -- parity rebuild: rules target disjoint elements, order kept as gated */
 
+/* values measured on www.reynoldsamerican.com (1440 / 1280) */
 .hero {
   position: relative;
-  padding: 40px 24px;
-  min-height: 300px;
-}
-
-.hero h1 {
-  max-width: 1200px;
-  margin-left: auto;
-  margin-right: auto;
-  color: var(--background-color);
-}
-
-.hero picture {
-  position: absolute;
-  z-index: -1;
-  inset: 0;
-  object-fit: cover;
   box-sizing: border-box;
+  overflow: clip;
 }
 
-.hero img {
-  object-fit: cover;
-  width: 100%;
+.hero-media {
+  position: absolute;
+  inset: 0;
+  background-position: 50% 50%;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.hero-media.parallax {
+  background-attachment: fixed;
+}
+
+.hero-dim {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  background-color: #111;
+}
+
+.hero-content {
+  position: relative;
+}
+
+.hero-content > * {
+  margin: 0 auto;
+}
+
+.hero-spacer {
+  height: 25px;
+}
+
+.hero-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+}
+
+.hero-content a.button:any-link {
+  display: inline-block;
+  margin: 0;
+  border: 0;
+  border-radius: 96px;
+  padding: 0.44em 36px;
+  background-color: #fff;
+  font: 700 16px/24px var(--body-font-family);
+  color: #0e2b63;
+  text-align: center;
+  text-transform: uppercase;
+  vertical-align: top;
+}
+
+.hero-content a.button:hover {
+  background-color: #0e2b63;
+  color: #fff;
+  text-decoration: none;
+}
+
+/* cover: centred text over a background image */
+.hero.cover {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 16px;
+}
+
+.hero.cover .hero-content {
+  flex: 1 1 auto;
+  color: #fff;
+  text-align: center;
+}
+
+.hero.cover .hero-content > * {
+  max-width: 94%;
+}
+
+.hero.cover h1 {
+  position: relative;
+  z-index: 20;
+  font: 800 calc(31.5201px + 1.405vw) / 1 var(--heading-font-family);
+  color: #fff;
+}
+
+.hero.cover p {
+  font: 400 20px/20px var(--body-font-family);
+}
+
+/* cover feature: section heading (h2), narrower text column */
+.hero.cover.feature .hero-content > * {
+  max-width: 90%;
+}
+
+.hero.cover.feature h2 {
+  font: 800 66.4px/66.4px var(--heading-font-family);
+  color: #fff;
+}
+
+.hero.cover.feature .hero-content > p {
+  max-width: 75%;
+}
+
+/* 55% measured at 1440, 75% at 1280; the switch point between them is not measured */
+@media (width >= 1440px) {
+  .hero.cover.feature .hero-content > p {
+    max-width: 55%;
+  }
+}
+
+/* banner: poster image band with a translucent title bar along the bottom */
+.hero.banner {
+  height: 350px;
+  background-color: #ddf3fc;
+}
+
+.hero.banner .hero-media {
+  /* -0.3px: matches how the source's object-fit: cover <video> places the same frame (gate: 98.77 -> 99.96 at 1440) */
+  background-position: 50% calc(50% - 0.3px);
+}
+
+.hero.banner .hero-link {
+  display: block;
   height: 100%;
 }
 
-@media (width >= 900px) {
-  .hero {
-    padding: 40px 32px;
-  }
+.hero.banner .hero-content {
+  position: static;
+}
+
+.hero.banner h2 {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  margin: 0;
+  padding: 16px 0 16px 30px;
+  background-color: rgb(14 42 98 / 50%);
+  font: 700 calc(13.5142px + 2.0476vw) / 1.5 var(--heading-font-family);
+  color: #fff;
 }
